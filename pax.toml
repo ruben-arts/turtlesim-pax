@@ -11,7 +11,15 @@ custom_command = "echo hello_world"
 turtlesim = "ros2 run turtlesim turtlesim_node"
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
+# Custom commands to make using the colcon env easier
+build = "colcon build --build-base .pax/build --install-base .pax/install --symlink-install"
+test = "colcon test --build-base .pax/build --install-base .pax/install"
+controller = "source .pax/install/local_setup.sh && ros2 run turtle_controller controller"
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
 ros-humble-turtlesim = "1.4.2.*"
+ros-humble-ament-cmake-auto = "*"
+
+colcon-core = "*"
+colcon-ros = "*"
