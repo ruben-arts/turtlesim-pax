@@ -17,7 +17,7 @@ cargo install --path pax
 You are now ready to clone this package and run the simulation
 
 ```
-git clone THIS
+git clone https://github.com/ruben-arts/turtlesim-pax.git
 
 pax run turtlesim
 ```
