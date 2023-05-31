@@ -1,6 +1,6 @@
 # Example package how to use pax for a ros package
 
-# First
+# First: Get pax
 Make sure you have the latest version of pax
 
 Clone the repo:
@@ -13,7 +13,7 @@ Install it
 cargo install --path pax
 ```
 
-# Second
+# Second: Installing dependencies
 You are now ready to clone this package and run the simulation
 
 ```
@@ -29,3 +29,16 @@ pax run teleop
 
 And in another terminal you could open the rqt viewer. 
 
+# Third: Building colcon packages
+
+```
+# Run the custom build command to do a colcon build
+pax run build 
+
+# The test command is also wrapped
+pax run test
+
+# Run the custom command to do a ros2 run
+pax run controller
+# Now you should see the same turtlesim move in a circle.
+```
