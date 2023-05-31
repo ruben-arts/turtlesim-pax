@@ -21,3 +21,11 @@ git clone https://github.com/ruben-arts/turtlesim-pax.git
 
 pax run turtlesim
 ```
+Open an extra terminal where you can run the teleop
+
+```
+pax run teleop
+```
+
+And in another terminal you could open the rqt viewer. 
+
