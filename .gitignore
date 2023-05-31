@@ -1,2 +1,6 @@
 # pax environments
 .pax
+
+# ros
+log
+*.pyc
