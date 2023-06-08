@@ -1,5 +1,5 @@
 [project]
-name = "turtlesim-pax"
+name = "turtlesim-pixi"
 version = "0.1.0"
 description = "ultra fast turtlesim installation on multiple platforms"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
@@ -12,9 +12,9 @@ turtlesim = "ros2 run turtlesim turtlesim_node"
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
-build = "colcon build --build-base .pax/build --install-base .pax/install --symlink-install"
-test = "colcon test --build-base .pax/build --install-base .pax/install"
-controller = "source .pax/install/local_setup.sh && ros2 run turtle_controller controller"
+build = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"
+test = "colcon test --build-base .pixi/build --install-base .pixi/install"
+controller = "source .pixi/install/local_setup.sh && ros2 run turtle_controller controller"
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
