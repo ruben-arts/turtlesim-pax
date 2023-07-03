@@ -4,17 +4,18 @@ version = "0.1.0"
 description = "ultra fast turtlesim installation on multiple platforms"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
 channels = ["conda-forge", "robostack-staging"]
-platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
 
 [commands]
 custom_command = "echo hello_world"
-turtlesim = "ros2 run turtlesim turtlesim_node"
+start = "ros2 run turtlesim turtlesim_node"
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
-build = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"
-test = "colcon test --build-base .pixi/build --install-base .pixi/install"
-controller = "source .pixi/install/local_setup.sh && ros2 run turtle_controller controller"
+build = {cmd = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"}
+test = { cmd = "colcon test --build-base .pixi/build --install-base .pixi/install", depends_on="build"}
+# This does not work anymore because of the sourcing of the ros workspace
+controller = { cmd = "bash -c 'source ./.pixi/install/setup.sh && python src/turtle_controller/turtle_controller/controller.py'" , depends_on = "build"}
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
@@ -23,3 +24,7 @@ ros-humble-ament-cmake-auto = "*"
 
 colcon-core = "*"
 colcon-ros = "*"
+
+# Needed to source the ros-workspace, which looses the ability to run on win-64
+bash = "5.2.15.*"
+
