@@ -19,7 +19,7 @@ You are now ready to clone this package and run the simulation
 ```
 git clone https://github.com/ruben-arts/turtlesim-pixi.git
 
-pixi run turtlesim
+pixi run start
 ```
 Open an extra terminal where you can run the teleop
 
@@ -35,10 +35,10 @@ And in another terminal you could open the rqt viewer.
 # Run the custom build command to do a colcon build
 pixi run build 
 
-# The test command is also wrapped
+# The test command is also wrapped, this depends on build so that will always be ran first.
 pixi run test
 
-# Run the custom command to do a ros2 run
+# Run the custom command to do a ros2 run, this depends on build so that will always be ran first.
 pixi run controller
 # Now you should see the same turtlesim move in a circle.
 ```
