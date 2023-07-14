@@ -1,19 +1,6 @@
 # Example package how to use pixi for a ros package
 
-# First: Get pixi
-Make sure you have the latest version of pixi
-
-Clone the repo:
-```
-git clone https://github.com/prefix-dev/pixi
-```
-
-Install it
-```
-cargo install --path pixi
-```
-
-# Second: Installing dependencies
+## Running ros2
 You are now ready to clone this package and run the simulation
 
 ```
@@ -29,7 +16,7 @@ pixi run teleop
 
 And in another terminal you could open the rqt viewer. 
 
-# Third: Building colcon packages
+## Building colcon packages
 
 ```
 # Run the custom build command to do a colcon build
@@ -38,7 +25,10 @@ pixi run build
 # The test command is also wrapped
 pixi run test
 
-# Run the custom command to do a ros2 run
+# Run the custom command to do a ros2 run, this depends on build so that will always be ran first. 
+# Note that the first time you run the build it will setup its own colcon environment. 
+# This has to be re-enabled, rerun any commando to activate the environment including the activation scripts.
+
 pixi run controller
 # Now you should see the same turtlesim move in a circle.
 ```

@@ -6,15 +6,22 @@ authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
 channels = ["conda-forge", "robostack-staging"]
 platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
 
-[commands]
+[activation]
+scripts = [".pixi/install/setup.sh"]
+
+[target.win-64.activation]
+scripts = [".pixi/install/setup.ps1"]
+
+[tasks]
 custom_command = "echo hello_world"
 turtlesim = "ros2 run turtlesim turtlesim_node"
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
 build = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"
-test = "colcon test --build-base .pixi/build --install-base .pixi/install"
-controller = "source .pixi/install/local_setup.sh && ros2 run turtle_controller controller"
+test = { cmd = "colcon test --build-base .pixi/build --install-base .pixi/install", depends_on="build"}
+# This depends on build but the first time the build is run it generates the activation script. So please run after build.
+controller = { cmd = "ros2 run turtle_controller controller" , depends_on = "build"}
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
