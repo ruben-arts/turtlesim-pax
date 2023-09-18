@@ -18,10 +18,10 @@ turtlesim = "ros2 run turtlesim turtlesim_node"
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
-build = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"
+build = "colcon build --build-base .pixi/build --install-base .pixi/install"
 test = { cmd = "colcon test --build-base .pixi/build --install-base .pixi/install", depends_on="build"}
 # This depends on build but the first time the build is run it generates the activation script. So please run after build.
-controller = { cmd = "ros2 run turtle_controller controller" , depends_on = "build"}
+controller = { cmd = "ros2 run turtle_controller draw_square" , depends_on = "build"}
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
