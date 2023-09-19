@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(turtle_controller)
+project(turtle_controller_cpp_py)
 
 # set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/../../env/lib")
 
@@ -25,21 +25,27 @@ find_package(PythonLibs REQUIRED)
 # include_directories(include)
 
 # Create Cpp executable
-add_executable(draw_square src/draw_square.cpp)
-ament_target_dependencies(draw_square rclcpp geometry_msgs)
-target_link_libraries(draw_square ${PYTHON_LIBRARIES})
+add_executable(draw_circle src/draw_circle.cpp)
+ament_target_dependencies(draw_circle rclcpp geometry_msgs)
+target_link_libraries(draw_circle ${PYTHON_LIBRARIES})
 
 
 # Install Cpp executables
 install(TARGETS
-draw_square
+draw_circle
   DESTINATION lib/${PROJECT_NAME}
 )
 
 # # Install Python executables
 install(PROGRAMS
-    script/controller.py
+    script/draw_square
   DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install launch files.
+install(DIRECTORY
+  launch
+  DESTINATION share/${PROJECT_NAME}/
 )
 
 ament_package()

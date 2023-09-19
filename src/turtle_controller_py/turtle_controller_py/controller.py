@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# Adding a shebang is needed as it is now an executable installed by the cmakelists.txt
-
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist

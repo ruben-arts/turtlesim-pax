@@ -3,25 +3,28 @@ name = "turtlesim-pixi"
 version = "0.1.0"
 description = "ultra fast turtlesim installation on multiple platforms"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
-channels = ["conda-forge", "robostack-staging"]
+channels = ["conda-forge", "robostack-humble"]
 platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
 
+# ROS workspace activation
 [activation]
 scripts = [".pixi/install/setup.sh"]
-
 [target.win-64.activation]
 scripts = [".pixi/install/setup.ps1"]
 
 [tasks]
-custom_command = "echo hello_world"
 turtlesim = "ros2 run turtlesim turtlesim_node"
+start = { depends_on=["turtlesim"] }
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
-build = "colcon build --build-base .pixi/build --install-base .pixi/install"
-test = { cmd = "colcon test --build-base .pixi/build --install-base .pixi/install", depends_on="build"}
+build = "colcon build --build-base .pixi/build --install-base .pixi/install --symlink-install"
+
 # This depends on build but the first time the build is run it generates the activation script. So please run after build.
-controller = { cmd = "ros2 run turtle_controller draw_square" , depends_on = "build"}
+square_py = { cmd = "ros2 run turtle_controller_cpp_py draw_square" , depends_on = "build"}
+circle_cpp = { cmd = "ros2 run turtle_controller_cpp_py draw_circle" , depends_on = "build"}
+circle_py_only = { cmd = "ros2 run turtle_controller_py controller" , depends_on = "build"}
+
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"
@@ -30,3 +33,10 @@ ros-humble-ament-cmake-auto = "*"
 
 colcon-core = "*"
 colcon-ros = "*"
+# Limit setup tools to avoid deprecation warning. https://answers.ros.org/question/396439/setuptoolsdeprecationwarning-setuppy-install-is-deprecated-use-build-and-pip-and-other-standards-based-tools/
+setuptools = "<=58.2.0"
+
+# Needed to get the correct compiled result including the RPATH set for the conda environment lib folder.
+compilers = "1.6.0.*"
+pkg-config = "0.29.2.*"
+cmake = "3.25.2.*"
