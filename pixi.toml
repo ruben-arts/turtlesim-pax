@@ -4,13 +4,11 @@ version = "0.1.0"
 description = "ultra fast turtlesim installation on multiple platforms"
 authors = ["Ruben Arts <ruben.arts@hotmail.com>"]
 channels = ["conda-forge", "robostack-humble"]
-platforms = ["linux-64", "win-64", "osx-64", "osx-arm64"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
 
 # ROS workspace activation
 [activation]
 scripts = [".pixi/install/setup.sh"]
-[target.win-64.activation]
-scripts = [".pixi/install/setup.ps1"]
 
 [tasks]
 turtlesim = "ros2 run turtlesim turtlesim_node"
