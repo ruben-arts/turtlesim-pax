@@ -14,7 +14,6 @@ scripts = [".pixi/install/setup.ps1"]
 
 [tasks]
 turtlesim = "ros2 run turtlesim turtlesim_node"
-start = { depends_on=["turtlesim"] }
 teleop = "ros2 run turtlesim turtle_teleop_key"
 
 # Custom commands to make using the colcon env easier
@@ -24,7 +23,8 @@ build = "colcon build --build-base .pixi/build --install-base .pixi/install --sy
 square_py = { cmd = "ros2 run turtle_controller_cpp_py draw_square" , depends_on = "build"}
 circle_cpp = { cmd = "ros2 run turtle_controller_cpp_py draw_circle" , depends_on = "build"}
 circle_py_only = { cmd = "ros2 run turtle_controller_py controller" , depends_on = "build"}
-
+square = { cmd = "ros2 launch turtle_controller_cpp_py draw_square.launch.py" , depends_on = "build"}
+start = { depends_on=["square"] }
 
 [dependencies]
 ros-humble-desktop = "0.10.0.*"

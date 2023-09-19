@@ -9,8 +9,8 @@ def generate_launch_description():
             name='sim'
         ),
         Node(
-            package='turtle_controller', 
+            package='turtle_controller_cpp_py', 
             executable='draw_square', 
-            name='circle_drawer'
+            name='draw_square'
         ),
     ])
