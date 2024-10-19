@@ -25,4 +25,5 @@ setup(
             'controller = turtle_controller_py.controller:main'
         ],
     },
+    tests_require=['pytest'],
 )
