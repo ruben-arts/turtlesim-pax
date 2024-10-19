@@ -1,5 +1,16 @@
-- uses: prefix-dev/setup-pixi@v0.8.1
-  with:
-    pixi-version: v0.33.0
-    cache: true
-- run: pixi run test
+name: Pixi ROS GitHub Actions Demo
+on: [push]
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      # Pixi specific setup
+      - uses: prefix-dev/setup-pixi@v0.8.1
+        with:
+          pixi-version: v0.33.0
+          cache: true
+      - run: pixi run test
