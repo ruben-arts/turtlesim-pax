@@ -8,6 +8,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
+      - uses: actions/checkout@v4
       # Pixi specific setup
       - uses: prefix-dev/setup-pixi@v0.8.1
         with:
